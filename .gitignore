@@ -1,0 +1,32 @@
+#ignore thumbnails created by windows
+Thumbs.db
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Build results
+[Bb]in
+[Bb]in/
+[Oo]bj
+[Oo]bj/
+[Dd]ebug/
+[Dd]ebug*/
+[Rr]elease/
+[Bb]uild.log
+/build/TestResult.xml
+
+#Visual Studio Files
+.vs/
+
+# NuGet Packages Directory
+packages
+
+# git diff files
+*.orig
+
+
+# include nuget.exe
+!nuget.exe
+

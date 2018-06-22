@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryAnalyser", "DirectoryAnalyser.csproj", "{67876D21-D64C-48C4-888D-7E6879D755D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryAnalyser.Tests", "..\DirectoryAnalyser.Tests\DirectoryAnalyser.Tests.csproj", "{D9CDA72A-55B2-4D30-91DE-ADD12482BE61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67876D21-D64C-48C4-888D-7E6879D755D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67876D21-D64C-48C4-888D-7E6879D755D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67876D21-D64C-48C4-888D-7E6879D755D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67876D21-D64C-48C4-888D-7E6879D755D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9CDA72A-55B2-4D30-91DE-ADD12482BE61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9CDA72A-55B2-4D30-91DE-ADD12482BE61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9CDA72A-55B2-4D30-91DE-ADD12482BE61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9CDA72A-55B2-4D30-91DE-ADD12482BE61}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F40F4E4-F3DF-43D9-AA5F-E3B9FE57B102}
+	EndGlobalSection
+EndGlobal

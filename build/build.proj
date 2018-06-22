@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <UsingTask TaskName="MSBuild.Tasks.NUnit" AssemblyFile="$(MSBuildProjectDirectory)\..\DirectoryAnalyser\packages\MSBuild.NUnit.1.0.2\tools\MSBuild.NUnit.dll" />
+
+    <PropertyGroup >
+        <ProjectRootPath>$(MSBuildProjectDirectory)\..</ProjectRootPath>
+        <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">$(ProjectRootPath)\DirectoryAnalyser\</SolutionDir>
+        <NuGetDirPath>$(ProjectRootPath)\.nuget</NuGetDirPath>
+        <NuGetExePath>$(NuGetDirPath)\nuget.exe</NuGetExePath>
+        <NuGetConfigPath>$(NuGetDirPath)\nuget.config</NuGetConfigPath>
+        <DistDirPath>$(ProjectRootPath)\dist</DistDirPath>
+    </PropertyGroup>
+
+    <Import Project="$(NuGetDirPath)\NuGet.targets" />
+
+    <Target Name="Compile">
+        <MSBuild Projects="$(ProjectRootPath)\DirectoryAnalyser\DirectoryAnalyser.sln" />
+    </Target>
+
+    <Target Name="Build" DependsOnTargets="$(BuildDependsOn);RestoreBuildPackages">
+        <CallTarget Targets="Compile" />
+    </Target>
+	
+	<Target Name="Clean" DependsOnTargets="$(BuildDependsOn);RestoreBuildPackages">
+        <RemoveDir Directories="$(ProjectRootPath)\DirectoryAnalyser\bin" />
+		<RemoveDir Directories="$(ProjectRootPath)\DirectoryAnalyser\obj" />
+		<RemoveDir Directories="$(ProjectRootPath)\DirectoryAnalyser\packages" />
+		
+		<RemoveDir Directories="$(ProjectRootPath)\DirectoryAnalyser\DirectoryAnalyser.Tests\bin" />
+		<RemoveDir Directories="$(ProjectRootPath)\DirectoryAnalyser\DirectoryAnalyser.Tests\obj" />
+		<RemoveDir Directories="$(ProjectRootPath)\DirectoryAnalyser\DirectoryAnalyser.Tests\packages" />
+		
+		<Delete Files="$(ProjectRootPath)\common" />
+		<Delete Files="$(ProjectRootPath)\a_only" />
+		<Delete Files="$(ProjectRootPath)\b_only" />
+    </Target>
+   
+
+	<Target Name="Test">
+        <ItemGroup>
+            <NUnitExePath Include="$(ProjectRootPath)\DirectoryAnalyser\packages\NUnit.Runners.2.6.3\tools\nunit-console.exe" />
+            <TestAssemblies Include="$(ProjectRootPath)\DirectoryAnalyser.Tests\bin\debug\*Tests*.dll" />
+        </ItemGroup>
+        <NUnit Assemblies="@(TestAssemblies)"
+               ToolPath="@(NUnitExePath->'%(relativedir)')"
+               DisableShadowCopy="true"
+               Force32Bit="false"
+               FrameworkToUse="net-4.0"
+               ContinueOnError="false" />
+    </Target>
+
+
+    <Target Name="RestoreBuildPackages" DependsOnTargets="CheckPrerequisites">
+        <Exec Command="$(NuGetExePath) restore $(ProjectRootPath)\DirectoryAnalyser\DirectoryAnalyser.sln" />
+    </Target>
+
+
+</Project>
